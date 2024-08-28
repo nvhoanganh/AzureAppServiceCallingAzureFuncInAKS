@@ -1,5 +1,8 @@
 @host = http://localhost:5039
-@host = https://azurefuncdemoappservice.azurewebsites.net
+# @host = https://azurefuncdemoappservice.azurewebsites.net
 
 ###
 GET {{host}}/weatherforecast
+
+###
+GET {{host}}/azurefunc

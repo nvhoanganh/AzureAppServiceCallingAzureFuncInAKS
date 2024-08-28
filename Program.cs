@@ -36,6 +36,20 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+// call the Azure Func
+app.MapGet("/azurefunc", async () =>
+{
+    var httpClient = new HttpClient();
+
+    // call the child service
+    var response = await httpClient.GetAsync($"http://20.11.83.209/api/HttpExampleParent");
+    var rsp = await response.Content.ReadAsStringAsync();
+    var finalString = $"From /api/HttpExampleParent:\n\t'{rsp}'";
+    return finalString;
+})
+.WithName("azurefunc")
+.WithOpenApi();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
